@@ -19,6 +19,7 @@ public class BankCommand implements CommandExecutor {
 			switch (args[0]) {
 			case "info": {
 				// skills info
+				sender.sendMessage("Exzellent");
 				break;
 			}
 			default: {
