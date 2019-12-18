@@ -1,5 +1,8 @@
 package ga.tumgaming.tumine.tuminemoney.listeners;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -44,8 +47,23 @@ public class BankCommand implements CommandExecutor {
 				ItemMeta meta = stack.getItemMeta();
 				meta.setDisplayName("Account balance");
 				int[] balance = manager.getChangedMoneyFromPlayer(recipient);
-				String[] lore = new 
+				List<String> lore = new ArrayList<>();
+				lore.add("Gold Ingots: "+balance[0]);
+				lore.add("Gold Nuggets: "+balance[1]);
+				lore.add("Iron Ingots: "+balance[2]);
+				lore.add("Iron Nuggets: "+balance[3]);
 				meta.setLore(lore);
+				stack.setItemMeta(meta);
+				
+				ItemStack stack2 = new ItemStack(Material.SPRUCE_SIGN);
+				meta.setDisplayName("Withdraw");
+				
+				ItemStack stack3 = new ItemStack(Material.CHEST);
+				meta.setDisplayName("Deposit");
+				
+				bankInv.setItem(4, stack);
+				bankInv.setItem(10, stack2);
+				bankInv.setItem(17, stack3);
 			}
 		}
 		return false;
