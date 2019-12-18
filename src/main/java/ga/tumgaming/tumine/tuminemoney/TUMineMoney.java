@@ -22,10 +22,10 @@ public class TUMineMoney extends JavaPlugin {
 	public void onEnable() {
 		TUMineMoney.plugin = this;
 
-		config = new Config(plugin, "skills");
+		config = new Config(plugin, "bankAccounts");
 		
 	    // Register our command "createInbox" (set an instance of your command class as executor)
-	    this.getCommand("bank").setExecutor(new BankCommand());
+	    this.getCommand("bank").setExecutor(new BankCommand(config));
 		
 		registerEvents();
 
