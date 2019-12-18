@@ -64,6 +64,8 @@ public class BankCommand implements CommandExecutor {
 				bankInv.setItem(4, stack);
 				bankInv.setItem(10, stack2);
 				bankInv.setItem(17, stack3);
+				
+				recipient.openInventory(bankInv);
 			}
 		}
 		return false;
