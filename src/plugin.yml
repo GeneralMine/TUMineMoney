@@ -1,6 +1,6 @@
-main: ga.tumgaming.tumine.tuminetemplate.tuminetemplate
-name: TUMineTemplate
-prefix: TUMineTemplate
+main: ga.tumgaming.tumine.tuminemoney.tuminemoney
+name: TUMineMoney
+prefix: TUMineMoney
 author: GeneralMine, HrMoritz, Laurox
 version: ${project.version}
 api-version: 1.14
@@ -8,5 +8,5 @@ depend:
    - Vault
 
 commands:
-   template:
-      description: Overview of your templates
+   bank:
+      description: Overview of current bank account
