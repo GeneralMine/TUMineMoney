@@ -57,7 +57,7 @@ public class BankAccountManager
 		if(money/64 > 0)
 		{
 			ergebnis[2] = (int) money/64;
-			money = money/64;
+			money = money % 64;
 		}
 		else
 		{
