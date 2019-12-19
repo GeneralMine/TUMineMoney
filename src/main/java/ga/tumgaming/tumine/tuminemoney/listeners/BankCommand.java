@@ -18,7 +18,7 @@ import ga.tumgaming.tumine.tuminemoney.BankAccountManager;
 import ga.tumgaming.tumine.tuminemoney.util.Config;
 
 public class BankCommand implements CommandExecutor {
-	private Config config;
+	protected Config config;
 	
 	public BankCommand(Config config) 
 	{
@@ -43,31 +43,91 @@ public class BankCommand implements CommandExecutor {
 			{
 				BankAccountManager manager = new BankAccountManager(config);
 				Inventory bankInv = Bukkit.createInventory(null, 27, recipient.getName() + "'s Account!");
-				ItemStack stack = new ItemStack(Material.WRITTEN_BOOK);
-				ItemMeta meta = stack.getItemMeta();
+				ItemStack balance = new ItemStack(Material.WRITTEN_BOOK);
+				ItemMeta meta = balance.getItemMeta();
 				meta.setDisplayName("Account balance");
-				int[] balance = manager.getChangedMoneyFromPlayer(recipient);
+				int[] accountMoney = manager.getChangedMoneyFromPlayer(recipient);
 				List<String> lore = new ArrayList<>();
-				lore.add("Gold Ingots: "+balance[0]);
-				lore.add("Gold Nuggets: "+balance[1]);
-				lore.add("Iron Ingots: "+balance[2]);
-				lore.add("Iron Nuggets: "+balance[3]);
+				lore.add("Gold Ingots: "+accountMoney[0]);
+				lore.add("Gold Nuggets: "+accountMoney[1]);
+				lore.add("Iron Ingots: "+accountMoney[2]);
+				lore.add("Iron Nuggets: "+accountMoney[3]);
 				meta.setLore(lore);
-				stack.setItemMeta(meta);
+				balance.setItemMeta(meta);
 				
-				ItemStack stack2 = new ItemStack(Material.SPRUCE_SIGN);
-				ItemMeta meta2 = stack2.getItemMeta();
-				meta2.setDisplayName("Withdraw");
-				stack2.setItemMeta(meta2);
+				ItemStack depositGI = new ItemStack(Material.GOLD_INGOT);
+				ItemMeta depositGIMeta = depositGI.getItemMeta();
+				depositGIMeta.setDisplayName("Deposit 1 Gold Ingot");
+				depositGI.setItemMeta(depositGIMeta);
 				
-				ItemStack stack3 = new ItemStack(Material.CHEST);
-				ItemMeta meta3 = stack3.getItemMeta();
-				meta3.setDisplayName("Deposit");
-				stack3.setItemMeta(meta3);
+				ItemStack depositGN = new ItemStack(Material.GOLD_NUGGET);
+				ItemMeta depositGNMeta = depositGN.getItemMeta();
+				depositGNMeta.setDisplayName("Deposit 1 Gold Nugget");
+				depositGN.setItemMeta(depositGNMeta);
 				
-				bankInv.setItem(4, stack);
-				bankInv.setItem(10, stack2);
-				bankInv.setItem(17, stack3);
+				ItemStack depositII = new ItemStack(Material.IRON_INGOT);
+				ItemMeta depositIIMeta = depositII.getItemMeta();
+				depositIIMeta.setDisplayName("Deposit 1 Iron Ingot");
+				depositII.setItemMeta(depositIIMeta);
+				
+				ItemStack depositIN = new ItemStack(Material.IRON_NUGGET);
+				ItemMeta depositINMeta = depositIN.getItemMeta();
+				depositINMeta.setDisplayName("Deposit 1 Iron Nugget");
+				depositIN.setItemMeta(depositINMeta);
+				
+				ItemStack depositALL = new ItemStack(Material.DIAMOND);
+				ItemMeta depositALLMeta = depositALL.getItemMeta();
+				depositALLMeta.setDisplayName("Deposit All");
+				depositALL.setItemMeta(depositALLMeta);
+				
+				ItemStack withdrawGI = new ItemStack(Material.GOLD_INGOT);
+				ItemMeta withdrawGIMeta = withdrawGI.getItemMeta();
+				withdrawGIMeta.setDisplayName("Withdraw 1 Gold Ingot");
+				withdrawGI.setItemMeta(withdrawGIMeta);
+				
+				ItemStack withdrawGN = new ItemStack(Material.GOLD_NUGGET);
+				ItemMeta withdrawGNMeta = withdrawGN.getItemMeta();
+				withdrawGNMeta.setDisplayName("Withdraw 1 Gold Nugget");
+				withdrawGN.setItemMeta(withdrawGNMeta);
+				
+				ItemStack withdrawII = new ItemStack(Material.IRON_INGOT);
+				ItemMeta withdrawIIMeta = withdrawII.getItemMeta();
+				withdrawIIMeta.setDisplayName("Withdraw 1 Iron Ingot");
+				withdrawII.setItemMeta(withdrawIIMeta);
+				
+				ItemStack withdrawIN = new ItemStack(Material.IRON_NUGGET);
+				ItemMeta withdrawINMeta = withdrawIN.getItemMeta();
+				withdrawINMeta.setDisplayName("Withdraw 1 Iron Nugget");
+				withdrawIN.setItemMeta(withdrawINMeta);
+				
+				ItemStack withdrawALL = new ItemStack(Material.DIAMOND);
+				ItemMeta withdrawALLMeta = withdrawALL.getItemMeta();
+				withdrawALLMeta.setDisplayName("Withdraw All");
+				withdrawALL.setItemMeta(withdrawALLMeta);
+				
+				ItemStack depositGlass = new ItemStack(Material.RED_STAINED_GLASS_PANE);
+				
+				ItemStack withdrawGlass = new ItemStack(Material.GREEN_STAINED_GLASS_PANE);
+				
+				bankInv.setItem(13, balance);
+				bankInv.setItem(0, depositGlass);
+				bankInv.setItem(1, depositGlass);
+				bankInv.setItem(2, depositGI);
+				bankInv.setItem(3, depositGN);
+				bankInv.setItem(4, depositII);
+				bankInv.setItem(5, depositIN);
+				bankInv.setItem(6, depositALL);
+				bankInv.setItem(7, depositGlass);
+				bankInv.setItem(8, depositGlass);
+				bankInv.setItem(18, withdrawGlass);
+				bankInv.setItem(19, withdrawGlass);
+				bankInv.setItem(20, withdrawGI);
+				bankInv.setItem(21, withdrawGN);
+				bankInv.setItem(22, withdrawII);
+				bankInv.setItem(23, withdrawIN);
+				bankInv.setItem(24, withdrawALL);
+				bankInv.setItem(25, withdrawGlass);
+				bankInv.setItem(26, withdrawGlass);
 				
 				recipient.openInventory(bankInv);
 			}

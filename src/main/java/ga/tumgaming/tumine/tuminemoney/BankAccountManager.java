@@ -1,7 +1,10 @@
 package ga.tumgaming.tumine.tuminemoney;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -67,6 +70,45 @@ public class BankAccountManager
 		ergebnis[3] = (int) money;
 		
 		return ergebnis;
+	}
+	
+	public long countCurrentMoney(Player recipient)
+	{
+		long ergebnis = 0;
+		ItemStack[] inventar = recipient.getInventory().getContents();
+		
+        for (ItemStack item : inventar) 
+        {
+            if (item.getType() == Material.GOLD_INGOT) 
+            {
+                ergebnis += item.getAmount() * Math.pow(64, 3);
+            }
+            
+            if (item.getType() == Material.GOLD_NUGGET) 
+            {
+                ergebnis += item.getAmount() * Math.pow(64, 2);
+            }
+            
+            if (item.getType() == Material.IRON_INGOT) 
+            {
+                ergebnis += item.getAmount() * 64;
+            }
+            
+            if (item.getType() == Material.IRON_NUGGET) 
+            {
+                ergebnis += item.getAmount();
+            }
+        }
+		
+		return ergebnis;
+	}
+	
+	public void deleteAllCurrencyFromPlayer(Player recipient)
+	{
+		recipient.getInventory().remove(Material.GOLD_INGOT);
+		recipient.getInventory().remove(Material.GOLD_NUGGET);
+		recipient.getInventory().remove(Material.IRON_INGOT);
+		recipient.getInventory().remove(Material.IRON_NUGGET);
 	}
 	
 	public long withdrawUnchangedMoneyFromPlayer(Player recipient, long amount)
