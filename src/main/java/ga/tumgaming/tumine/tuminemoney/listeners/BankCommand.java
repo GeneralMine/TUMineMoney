@@ -56,10 +56,14 @@ public class BankCommand implements CommandExecutor {
 				stack.setItemMeta(meta);
 				
 				ItemStack stack2 = new ItemStack(Material.SPRUCE_SIGN);
-				meta.setDisplayName("Withdraw");
+				ItemMeta meta2 = stack2.getItemMeta();
+				meta2.setDisplayName("Withdraw");
+				stack2.setItemMeta(meta2);
 				
 				ItemStack stack3 = new ItemStack(Material.CHEST);
-				meta.setDisplayName("Deposit");
+				ItemMeta meta3 = stack3.getItemMeta();
+				meta3.setDisplayName("Deposit");
+				stack3.setItemMeta(meta3);
 				
 				bankInv.setItem(4, stack);
 				bankInv.setItem(10, stack2);

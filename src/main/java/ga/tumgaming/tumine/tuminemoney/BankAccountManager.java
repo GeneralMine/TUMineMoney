@@ -34,7 +34,7 @@ public class BankAccountManager
 		int[] ergebnis = new int[4];
 		long money = getUnchangedMoneyFromPlayer(recipient);
 		
-		if(money/Math.pow(64, 3) > 0)
+		if((int)(money/Math.pow(64, 3)) > 0)
 		{
 			ergebnis[0] = (int) ((int) money/Math.pow(64, 3));
 			money = (long) (money % Math.pow(64, 3));
@@ -44,7 +44,7 @@ public class BankAccountManager
 			ergebnis[0] = 0;
 		}
 		
-		if(money/Math.pow(64, 2) > 0)
+		if((int)(money/Math.pow(64, 2)) > 0)
 		{
 			ergebnis[1] = (int) ((int) money/Math.pow(64, 2));
 			money = (long) (money % Math.pow(64, 2));
@@ -54,7 +54,7 @@ public class BankAccountManager
 			ergebnis[1] = 0;
 		}
 		
-		if(money/64 > 0)
+		if((int)(money/64) > 0)
 		{
 			ergebnis[2] = (int) money/64;
 			money = money % 64;
